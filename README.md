@@ -4,7 +4,13 @@
 (EN CONSTRUCTION)
 
 <h3>Model and input format</h3>
-The input format to the model has to respect the following structure :
+
+We took the following model from HuggingFace : <a href="https://huggingface.co/rdpahalavan/bert-network-packet-flow-header-payload">rdpahalavan/bert-network-packet-flow-header-payload</a> which classifies a <b>single network packet</b> into one of these categories : 
+```
+['Analysis', 'Backdoor', 'Bot', 'DDoS', 'DoS', 'DoS GoldenEye', 'DoS Hulk', 'DoS SlowHTTPTest', 'DoS Slowloris', 'Exploits', 'FTP Patator', 'Fuzzers', 'Generic', 'Heartbleed', 'Infiltration', 'Normal', 'Port Scan', 'Reconnaissance', 'SSH Patator', 'Shellcode', 'Web Attack - Brute Force', 'Web Attack - SQL Injection', 'Web Attack - XSS', 'Worms']
+```
+
+Each input represents a network packet which respects the following structure :
 <br><br>
 <img src="img/InputFormat.png">
 
