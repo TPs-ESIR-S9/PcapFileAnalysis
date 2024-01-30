@@ -5,7 +5,7 @@
 
 <h3>Model and input format</h3>
 The input format to the model has to respect the following structure :
-
+<br><br>
 <img src="img/InputFormat.png">
 
 Pcap files are
@@ -18,6 +18,10 @@ Ability to train the model with filters
 HTTP GET/ File filtering
 Removing samples
 ```
+
+ allow adding training samples to the model 
+
+We can even get rid of
 
 <h3>How to set up the app on Google Collab </h3>
 
@@ -50,8 +54,12 @@ Then click the link, you should land on the following app :
 
 <br><br>
 
+The given notebook allows to use Colab's default GPU w/ Pytorch in order to make trainings/predictions faster :
 
-
+```python
+device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+model = model.to(device)
+```
 
 
 
