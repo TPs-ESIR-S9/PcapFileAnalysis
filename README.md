@@ -31,7 +31,7 @@ We can even get rid of
 
 <h3>How to set up the app on Google Collab </h3>
 
-Once executed, the following cell will print a link which will be routing to the app <i>(example : https://twtryxwcltj-496ff2e9c6d22116-5000-colab.googleusercontent.com/) </i> :
+Once executed, the following cell will print a link which will be routing to the app :
 
 ```python
 from google.colab.output import eval_js
