@@ -1,7 +1,8 @@
 <h1>ESIR-S9 - AI Project : Network Pcap File Analysis</h1>
 <b>Yazid BENJAMAA <a href="https://github.com/Xacone">(@Xacone)</a> & Thomas DELAPART <a href="https://github.com/Thomega35">(@Thomega35)</a></b>
 
-(EN CONSTRUCTION)
+The project's purpose is to predict wether a network activiy is malicious or not, this classification is achieved by analysis each packet content and context in a network capture file (pcap) and then returning a brief of the attacks that were detected.
+We build a wep app that allows to visualiaze 
 
 <h3>Model and input format</h3>
 
