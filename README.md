@@ -35,15 +35,13 @@ The model does such a great job in detecting DoS attacks through the network. <b
 Two HTTP Simple Denial of Service (DoS) tools were used to test its capabilites at detecting attacks that emanate from them : 
 <a href="https://github.com/grafov/hulk"> Hulk </a> & <a href="https://www.kali.org/tools/goldeneye/"> GoldenEye </a>
 
-<h4>GoldenEye</h4>
-
-
 <h4>Hulk</h4>
 
+<img src="img/hulk.gif">
 
+<h4>20 ports TCP SYN Scannning (Assimiled to a normal activity)</h4>
 
-
-
+<img src="img/portscan.gif">
 
 <h3>How to set up the app on Google Collab </h3>
 
