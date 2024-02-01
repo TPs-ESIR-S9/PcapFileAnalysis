@@ -73,6 +73,8 @@ We are trying here to detect DoS that were done by a tool which name is Slowlori
 Logically, the model should predict that there's a lot of packets assimilated to DoS/DDoS or predict that they're normal if he failed.
 The model predicted the presence of a completely unrelated attack which is SSH brute-force with <a href="https://github.com/lanjelot/patator">the Patator tool</a> even though there is no communication to TCP port 22.
 
+<img src="img/slowloris.png">
+
 <h3>How to set up the app on Google Collab </h3>
 
 Once executed, the following cell will print a link which will be routing to the app :
@@ -100,10 +102,8 @@ if __name__ == "__main__":
 [....]
 ```
 
-Then click the link, you should land on app. 
-
-<br><br>
-
+Then click the link, you should land on the app. 
+<br>
 The given notebook allows to use Colab's default GPU w/ Pytorch in order to make trainings/predictions faster :
 
 ```python
@@ -111,6 +111,8 @@ device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 model = model.to(device)
 ```
 
+<h4>To conclude</h4>
 
+Working on this small project has been fun and instructive, and even if it's only a POC in the end, this project and its model can be applied and show their usefulness to many practical cases dealing with detectability in computer networks.
 
 
