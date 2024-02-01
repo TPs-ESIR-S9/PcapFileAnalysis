@@ -15,11 +15,18 @@ Each input represents a network packet which respects the following structure :
 <br><br>
 <img src="img/InputFormat.png">
 
+The model is based on BERT (Bidirectional Encoder Representations from Transformers) which is based on the Transformer Neural Network architecture. We appreciated the usage of BERT as it is suitable in the context of analyzing pcap files where bidirectional packets data contexts in the network flow is important.
+
 Each IP packet in a a loaded pcap file is converted to the format before being processed by the model, pcap/packets manipulation is done using <a href="https://scapy.net/">Scapy</a>
+
+<i>Pcap files that were used for testing & fine-tuning the model were taken from the following sources, they provide a wide range of samples containing benign/malicious activities :</i><br>
+<a href="https://www.kaggle.com/datasets/daniaherzalla/tii-ssrc-23">TII-SSRC-23 Dataset - Network traffic for intrusion detection research</a><br>
+<a href="https://martinazembjakova.github.io/Network-forensic-tools-taxonomy/network-datasets.html">Network datasets</a><br>
+<a href="https://www.netresec.com/?page=PcapFiles">Network Forensics and Network Security Monitoring - Publicly available PCAP files</a>
 
 <h3>Fine-tuning</h3>
 
-There was many attempts to fine-tune the model. When adding more training labeled samples, the model has been much more proficient in detecting the same attack or attacks of the same family (acting at the same TCP/IP layer) but it returned inconsistent and false results for the other attacks, either detecting nothing at all or a bunch of other attacks that had nothing to do with the content of the pcap file. Knowng that we have also filtered packets that were taken into account during training (e.g. only `GET` or `POST` requests for HTTP DoS attack samples). 
+There was many attempts to fine-tune and half of them provided satisfying results. When adding more training labeled samples, the model has been much more proficient in detecting the same attack or attacks of the same family (acting at the same TCP/IP layer) but it returned inconsistent and false results for the other attacks, either detecting nothing at all or a bunch of other attacks that had nothing to do with the content of the pcap file. Knowng that we have also filtered packets that were taken into account during training (e.g. only `GET` or `POST` requests for HTTP DoS attack samples). 
 
 The notebook provides the function `trainFromPcapFile(file_path, label, application_filter)` which allow to add transformed training samples (packets) retrieved from a pcap file + the ability to select packets based on filter patterns.  
 ```python
@@ -45,12 +52,26 @@ Two HTTP Simple Denial of Service (DoS) tools were used to test its capabilites 
 
 We clearly see that the model has no problem to detect malicious anomaly flows in the network packets capture, he succeed to detect the anomaly type and the tool that was used with precision.
 
-<h4>GoldenEye attacks detection</h4>
+<h4>GoldenEye Attacks Detection</h4>
 
-<h4>GoldenEye attacks detection after fine-tuning</h4>
+<img src="img/golden-eye.png">
 
-Applying the described above for fine-tuning allowed to retrieve more relevant & explicit results when analyzinga a network traffic that suffered a DoS attack.
+<h4>GoldenEye Attacks Detection after Fine-Tuning the Model</h4>
 
+Applying the described methods above for fine-tuning allowed to retrieve more relevant & explicit results when analyzing a network traffic that suffered a DoS attack. 
+Compared to the model state before fine-tuning, we see that more DoS-related packets were detected <b>(500 malicious packets out of 1600 w/ fine-tuning VS 60 malicious packets out of 3000 by default)</b>
+
+<img src="img/fine-tune-goldeneye.png">
+
+<img src="img/fine-tune-goldeneye-2.png">
+
+You could also experiment it by using your own pcap samples or the ones that are provided in this repository.
+
+<h4>Example of Illogical Results Caused by Fine-Tuning</h4>
+
+We are trying here to detect DoS that were done by a tool which name is Slowloris.
+Logically, the model should predict that there's a lot of packets assimilated to DoS/DDoS or predict that they're normal if he failed.
+The model predicted the presence of a completely unrelated attack which is SSH brute-force with <a href="https://github.com/lanjelot/patator">the Patator tool</a> even though there is no communication to TCP port 22.
 
 <h3>How to set up the app on Google Collab </h3>
 
@@ -79,7 +100,7 @@ if __name__ == "__main__":
 [....]
 ```
 
-Then click the link, you should land on the following app : 
+Then click the link, you should land on app. 
 
 <br><br>
 
