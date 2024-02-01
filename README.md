@@ -33,15 +33,24 @@ We aren't able to provide a stable statement on the efficiency of fine-tuning , 
 
 The model does such a great job in detecting DoS attacks through the network. <br>
 Two HTTP Simple Denial of Service (DoS) tools were used to test its capabilites at detecting attacks that emanate from them : 
-<a href="https://github.com/grafov/hulk"> Hulk </a> & <a href="https://www.kali.org/tools/goldeneye/"> GoldenEye </a>
+<a href="https://github.com/grafov/hulk"> Hulk </a> & <a href="https://www.kali.org/tools/goldeneye/"> GoldenEye </a>.
 
-<h4>Hulk</h4>
+<h4>Hulk attacks detection</h4>
 
 <img src="img/hulk.gif">
 
-<h4>20 ports TCP SYN Scannning (Assimiled to a normal activity)</h4>
+<h4>20 ports TCP SYN Scannning (Assimiled to a "normal" activity)</h4>
 
 <img src="img/portscan.gif">
+
+We clearly see that the model has no problem to detect malicious anomaly flows in the network packets capture, he succeed to detect the anomaly type and the tool that was used with precision.
+
+<h4>GoldenEye attacks detection</h4>
+
+<h4>GoldenEye attacks detection after fine-tuning</h4>
+
+Applying the described above for fine-tuning allowed to retrieve more relevant & explicit results when analyzinga a network traffic that suffered a DoS attack.
+
 
 <h3>How to set up the app on Google Collab </h3>
 
