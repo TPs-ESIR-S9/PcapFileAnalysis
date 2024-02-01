@@ -1,4 +1,4 @@
-<h1>ESIR-S9 - AI Project : Network Pcap File Analysis</h1>
+<h1>ESIR-S9 - AI Project : Network Traffic Analysis</h1>
 <b>Yazid BENJAMAA <a href="https://github.com/Xacone">(@Xacone)</a> & Thomas DELAPART <a href="https://github.com/Thomega35">(@Thomega35)</a></b>
 <br><br>
 The project's purpose is to predict wether a network activiy is malicious or not, this classification is achieved by analysis each packet content and context in a network capture file (pcap) and then returning a brief of the attacks that were detected.
@@ -15,20 +15,15 @@ Each input represents a network packet which respects the following structure :
 <br><br>
 <img src="img/InputFormat.png">
 
-Pcap files are
+Each IP packet in a a loaded pcap file is converted to the format before being processed by the model, pcap/packets manipulation is done using <a href="https://scapy.net/">Scapy</a>
 
 <h3>Fine-tuning</h3>
 
-```
-TODO:
-Ability to train the model with filters
-HTTP GET/ File filtering
-Removing samples
-```
+There was many attempts to fine-tune the model. When adding more training labeled samples, the model has been much more proficient in detecting the same attack or attacks of the same family (acting at the same TCP/IP layer) but it returned inconsistent and false results for the other attacks, either detecting nothing at all or a bunch of other attacks that had nothing to do with the content of the pcap file. Knowng that we have also filtered packets that were taken into account during training (e.g. only `GET` or `POST` requests for HTTP DoS attack samples). 
+We also tried to get rid of certain parameters such as the backward and forward packets (which seemed to us to be irrelevant in a normal packet capture sequence) which also ameloried the results of some attacks detection such as web attacks and port scans but which also proved to distort certain results
+We aren't able to provide a stable statement on the efficiency of fine-tuning , however we truly believe that more efforts and testings could lead to a more performant and balanced fine-tunel model.
 
- allow adding training samples to the model 
-
-We can even get rid of
+<h3>Detecting Applicative (Layer 7) Denial of Service Attacks & Used Tools</h3>
 
 <h3>How to set up the app on Google Collab </h3>
 
